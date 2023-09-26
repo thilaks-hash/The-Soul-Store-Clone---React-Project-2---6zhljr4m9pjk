@@ -101,7 +101,7 @@ const DualNavbar = () => {
       <nav className="bg-red-600 p-6 sm:p-6 md:p-6 lg:p-2 text-white ">
         <div className=" flex justify-between m-2 container mx-auto">
           <div
-            className={`md:hidden ${isMenuOpen ? "hidden" : "block"}`}
+            className={`lg:hidden ${isMenuOpen ? "hidden" : "block"}`}
             onClick={toggleMenu}
           >
             <FaBars size={24} />

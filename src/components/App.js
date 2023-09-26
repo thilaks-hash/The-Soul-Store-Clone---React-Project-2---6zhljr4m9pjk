@@ -1,11 +1,12 @@
 import DualNavbar from "./DualNavbar";
-import Logo from "./Logo";
-
+import HeroBanner from "./HeroBanner";
+import Slider from "./Slider";
 function App() {
   return (
     <div>
       <DualNavbar />
-      <Logo />
+      <Slider />
+      <HeroBanner />
     </div>
   );
 }
