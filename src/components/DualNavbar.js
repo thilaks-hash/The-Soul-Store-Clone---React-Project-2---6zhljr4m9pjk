@@ -1,5 +1,21 @@
 import React, { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaBars,
+  FaClipboardList,
+  FaHeart,
+  FaSearch,
+  FaShoppingBag,
+  FaShoppingBasket,
+  FaShoppingCart,
+  FaTimes,
+  FaUsb,
+  FaUser,
+  FaUserAlt,
+  FaUserAltSlash,
+  FaUserFriends,
+  FaUserTag,
+  FaUsersCog,
+} from "react-icons/fa";
 
 const DualNavbar = () => {
   const [activeCategory, setActiveCategory] = useState("men");
@@ -90,9 +106,21 @@ const DualNavbar = () => {
               </li>
             </ul>
             <div className="p-5 m-5">
-              <ul className="flex-col">{renderBottomNavLinks()}</ul>
-              <li className="list-none">search</li>
-              <li className="list-none">profile</li>
+              <ul className="flex-col">
+                {renderBottomNavLinks()}
+                <li className="cursor-pointer p-5">
+                  <FaSearch />
+                </li>
+                <li className="cursor-pointer p-5">
+                  <FaHeart />
+                </li>
+                <li className="cursor-pointer p-5">
+                  <FaShoppingCart />
+                </li>
+                <li className="cursor-pointer p-5">
+                  <FaUser />
+                </li>
+              </ul>
             </div>
           </>
         )}
@@ -104,7 +132,7 @@ const DualNavbar = () => {
             className={`lg:hidden ${isMenuOpen ? "hidden" : "block"}`}
             onClick={toggleMenu}
           >
-            <FaBars size={24} />
+            <FaBars size={24} className="cursor-pointer" />
           </div>
           <ul className="hidden space-x-4 px-44  sm:hidden md:hidden lg:flex">
             <li
@@ -152,10 +180,18 @@ const DualNavbar = () => {
             {renderBottomNavLinks()}
           </ul>
           <ul className="hidden space-x-4 px-14 sm:hidden md:hidden lg:flex">
-            <li className="cursor-pointer">search</li>
-            <li className="cursor-pointer">profile</li>
-            <li className="cursor-pointer">cart</li>
-            <li className="cursor-pointer">warchlist</li>
+            <li className="cursor-pointer">
+              <FaSearch />
+            </li>
+            <li className="cursor-pointer">
+              <FaHeart />
+            </li>
+            <li className="cursor-pointer">
+              <FaShoppingCart />
+            </li>
+            <li className="cursor-pointer">
+              <FaUser />
+            </li>
           </ul>
         </div>
       </nav>

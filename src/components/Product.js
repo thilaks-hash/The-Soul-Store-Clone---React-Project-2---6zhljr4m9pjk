@@ -4,14 +4,13 @@ const Product = ({ product }) => {
   const { displayImage, _id, name } = product;
   console.log(product);
   return (
-    <div className="relative group">
+    <div className="relative group sm:px-20 lg:px-0 md:px-0">
       <img
-        className="h-80 w-80 m-5 hover:cursor-pointer "
+        className="h-80 w-80 m-5 hover:cursor-pointer  "
         src={displayImage}
         alt={name}
       />
-
-      <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white py-2 px-4 opacity-0 transform transition-transform duration-300 group-hover:opacity-100 group-hover:translate-y-0 translate-y-full">
+      <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-70 text-white py-2 px-4 lg:px-4 opacity-0 transform transition-transform duration-300 group-hover:opacity-100 group-hover:translate-y-0 translate-y-full sm:px-20 md:px-4">
         <h3 className="text-xl font-semibold">{product.name}</h3>
         <p className="text-lg">${product.price}</p>
       </div>

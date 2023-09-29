@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import Main from "./components/Main";
 import ProductInfo from "./components/ProductInfo";
+import Cart from "./components/WishList";
+import WishList from "./components/WishList";
 
 const appRouter = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/productinfo/:productId",
         element: <ProductInfo />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/wishlist",
+        element: <WishList />,
       },
     ],
     errorElement: <Error />,
