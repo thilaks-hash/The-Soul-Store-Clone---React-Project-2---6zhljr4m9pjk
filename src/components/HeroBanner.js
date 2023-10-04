@@ -32,7 +32,15 @@ const HeroBanner = () => {
       {error ? (
         <p>Error: {error.message}</p>
       ) : loading ? (
-        <div>Loading...</div>
+        <div className="pt-20 text-center text-lg">
+          Loading...
+          <div className="flex justify-center h-80 text-red-600">
+            <img
+              src="https://usagif.com/wp-content/uploads/loading-78.gif"
+              alt="loading gif"
+            />
+          </div>
+        </div>
       ) : (
         <div>
           <Link to="/main">

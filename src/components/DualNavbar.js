@@ -1,25 +1,22 @@
 import React, { useState } from "react";
 import {
   FaBars,
-  FaClipboardList,
   FaHeart,
   FaSearch,
-  FaShoppingBag,
-  FaShoppingBasket,
   FaShoppingCart,
   FaTimes,
-  FaUsb,
   FaUser,
-  FaUserAlt,
-  FaUserAltSlash,
-  FaUserFriends,
-  FaUserTag,
-  FaUsersCog,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Login from "./Login";
+import Signup from "./SignUp";
+import { useDispatch } from "react-redux";
+import { logout } from "../utilities/authSlice";
 
 const DualNavbar = () => {
   const [activeCategory, setActiveCategory] = useState("men");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const handleTopNavCategoryClick = (category) => {
     setActiveCategory(category);
@@ -135,14 +132,16 @@ const DualNavbar = () => {
             <FaBars size={24} className="cursor-pointer" />
           </div>
           <ul className="hidden space-x-4 px-44  sm:hidden md:hidden lg:flex">
-            <li
-              className={`cursor-pointer ${
-                activeCategory === "men" ? "font-bold  text-black" : ""
-              }`}
-              onClick={() => handleTopNavCategoryClick("men")}
-            >
-              Men
-            </li>
+            <Link to="/main">
+              <li
+                className={`cursor-pointer ${
+                  activeCategory === "men" ? "font-bold  text-black" : ""
+                }`}
+                onClick={() => handleTopNavCategoryClick("men")}
+              >
+                Men
+              </li>
+            </Link>
             <li
               className={`cursor-pointer ${
                 activeCategory === "women" ? "font-bold text-black" : ""
@@ -183,15 +182,33 @@ const DualNavbar = () => {
             <li className="cursor-pointer">
               <FaSearch />
             </li>
-            <li className="cursor-pointer">
-              <FaHeart />
-            </li>
-            <li className="cursor-pointer">
-              <FaShoppingCart />
-            </li>
+            <Link to="/wishlist">
+              <li className="cursor-pointer">
+                <FaHeart />
+              </li>
+            </Link>
+            <Link to="/cart">
+              <li className="cursor-pointer">
+                <FaShoppingCart />
+              </li>
+            </Link>
             <li className="cursor-pointer">
               <FaUser />
             </li>
+            <Link to="/login">
+              <li>login</li>
+            </Link>
+            <Link to="/signup">
+              <li>signup</li>
+            </Link>
+            <button
+              onClick={() => {
+                dispatch(logout());
+                console.log("log");
+              }}
+            >
+              Logout
+            </button>
           </ul>
         </div>
       </nav>
