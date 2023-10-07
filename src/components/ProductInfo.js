@@ -11,6 +11,7 @@ const ProductInfo = () => {
   const [productInfo, setProductInfo] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [quantity, setQuantity] = useState("1");
   const userToken = useSelector((state) => state.auth.user);
 
   const { name, images, fabric, price, description, tags, color, brand } =
@@ -33,53 +34,44 @@ const ProductInfo = () => {
     };
     FetchData();
   }, [productId]);
+  const handleQuantityChange = (e) => {
+    setQuantity(e.target.value);
+  };
   // ------------------wishlist---------------------
 
   const handleWishList = async (productId, userToken) => {
-    const url = "https://academics.newtonschool.co/api/v1/ecommerce/wishlist/";
-    const headers = {
-      Authorization: `Bearer ${userToken}`,
-      projectId: projectId,
+    const wishListBody = {
+      productId: productId,
     };
-
-    fetch(url, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        ...headers,
-      },
-      body: { productId: productId },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Product added to favorites:", data);
-      })
-      .catch((error) => {
-        console.error("Error adding product to favorites:", error);
-      });
-  };
-
-  const handleCart = async (productId, userToken) => {
-    const data = await axios.post(
-      `https://academics.newtonschool.co/api/v1/ecommerce/cart/${productId}`,
-
+    const data = await axios.patch(
+      "https://academics.newtonschool.co/api/v1/ecommerce/wishlist/",
+      wishListBody,
       {
         headers: {
-          projectId: projectId,
+          projectId: "6zhljr4m9pjk",
           Authorization: `Bearer ${userToken}`,
-
-          "Content-Type": "application/json",
         },
       }
     );
 
-    const json = await data.json();
-    console.log(json.data);
+    console.log(data);
+  };
+  const requestBody = {
+    quantity: quantity,
+  };
+  const handleCart = async (productId, userToken) => {
+    const data = await axios.patch(
+      `https://academics.newtonschool.co/api/v1/ecommerce/cart/${productId}`,
+      requestBody,
+      {
+        headers: {
+          projectId: "6zhljr4m9pjk",
+          Authorization: `Bearer ${userToken}`,
+        },
+      }
+    );
+    alert(data.data.message);
+    console.log(data);
   };
 
   return (
@@ -99,11 +91,9 @@ const ProductInfo = () => {
       ) : (
         <>
           <div className="container mx-auto flex flex-wrap p-3">
-            {/* Image on the right side */}
             <div className="w-full sm:w-1/2   px-20 pl-6 lg:p-20 sm:px-10">
               <Slider slides={images} />
             </div>
-            {/* Product details on the left side */}
             <div className="w-full sm:w-1/2 md:w-2/3 lg:w-1/2 xl:w-1/2 p-10">
               <h1 className="text-4xl sm:text-3xl md:text-3xl font-serif p-2">
                 {name}
@@ -129,7 +119,19 @@ const ProductInfo = () => {
                   {color}
                 </span>
               </div>
-              <p className="p-3 font-extrabold">${price}</p>
+              <div>
+                <label>
+                  Quantity:
+                  <input
+                    type="number"
+                    placeholder="quantity"
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    className="bg-slate-500"
+                  />
+                </label>
+              </div>
+              <p className="p-3 font-extrabold">₹{price}</p>
               <div className="flex my-4">
                 <button
                   className="bg-red-600 text-white rounded-sm py-2 px-4 mr-4"
