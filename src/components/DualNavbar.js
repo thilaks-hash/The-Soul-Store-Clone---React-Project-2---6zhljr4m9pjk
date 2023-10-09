@@ -72,7 +72,7 @@ const DualNavbar = () => {
         } transition-transform duration-300 ease-in-out`}
       >
         {/* Close icon to close the sidebar */}
-        <div className="text-right p-8">
+        <div className="text-right p-8 ">
           <FaTimes
             size={24}
             onClick={closeSidebar}
@@ -81,7 +81,7 @@ const DualNavbar = () => {
         </div>
         {isMenuOpen && (
           <>
-            <ul className="p-3 m-3 flex flex-wrap">
+            <ul className="p-3 m-3 flex flex-wrap ">
               <Link to="/main">
                 <li
                   className={`cursor-pointer p-4 ${
@@ -116,29 +116,48 @@ const DualNavbar = () => {
             <div className="p-5 m-5">
               <ul className="flex-col">
                 {renderBottomNavLinks()}
-                <li className="cursor-pointer p-5">
-                  <FaSearch />
+                <li className="cursor-pointer flex p-3">
+                  <input
+                    type="text"
+                    placeholder="Search here"
+                    value={search}
+                    className="p-1"
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  <Link
+                    to={`/searchresult/${search}`}
+                    className={search.trim() === "" ? "disabled-link" : ""}
+                  >
+                    <FaSearch className="m-1" />
+                  </Link>
                 </li>
-                <li className="cursor-pointer p-5">
-                  <FaHeart />
-                </li>
-                <li className="cursor-pointer p-5">
-                  <FaShoppingCart />
-                </li>
-                <li className="cursor-pointer p-5">
-                  <FaUser />
-                </li>
+                <Link to="/wishlist">
+                  <li className="cursor-pointer p-3">
+                    <FaHeart />
+                  </li>
+                </Link>
+                <Link to="/cart">
+                  <li className="cursor-pointer p-3">
+                    <FaShoppingCart />
+                  </li>
+                </Link>
+                <Link to="/updateprofile">
+                  <li className="cursor-pointer p-3">
+                    <FaUser />
+                  </li>
+                </Link>
                 <Link to="/login">
-                  <li>login</li>
+                  <li className="p-3">login</li>
                 </Link>
                 <Link to="/signup">
-                  <li>signup</li>
+                  <li className="p-3">signup</li>
                 </Link>
                 <button
                   onClick={() => {
                     dispatch(logout());
                     console.log("log");
                   }}
+                  className="p-3"
                 >
                   Logout
                 </button>
@@ -265,11 +284,13 @@ const DualNavbar = () => {
       </nav>
       {/* responsive navbar */}
       <div className="relative  sm:block md:block lg:hidden">
-        <img
-          src="https://www.thesouledstore.com/static/img/300x157-twitter.png"
-          alt="logo"
-          className="w-32 h-20 m-5 absolute  left-1/2 transform -translate-x-1/2 -translate-y-32 z-10"
-        />
+        <Link to="/">
+          <img
+            src="https://www.thesouledstore.com/static/img/300x157-twitter.png"
+            alt="logo"
+            className="w-32 h-20 m-5 absolute  left-1/2 transform -translate-x-1/2 -translate-y-32 z-10"
+          />
+        </Link>
       </div>
     </div>
   );

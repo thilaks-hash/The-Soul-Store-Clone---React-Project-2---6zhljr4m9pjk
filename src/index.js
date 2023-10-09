@@ -47,7 +47,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/updateprofile",
-        element: <UpdateProfile />,
+        element: <PrivateRoute component={<UpdateProfile />} />,
       },
       {
         path: "/searchresult/:search",
