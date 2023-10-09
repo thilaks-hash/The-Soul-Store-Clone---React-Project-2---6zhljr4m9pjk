@@ -9,6 +9,7 @@ import {
   Outlet,
   Route,
 } from "react-router-dom";
+import UpdateProfile from "./components/UpdateProfile";
 import Main from "./components/Main";
 import ProductInfo from "./components/ProductInfo";
 import Cart from "./components/Cart";
@@ -18,6 +19,10 @@ import Signup from "./components/SignUp";
 import ForgotPassword from "./components/ForgotPassword";
 import PrivateRoute from "./components/PrivateRoute";
 import OrderNow from "./components/OrderNow";
+import OrderList from "./components/OrderList";
+import EachOrder from "./components/EachOrder";
+import SearchResult from "./components/SearchResult";
+import Filter from "./components/Filter";
 
 const appRouter = createBrowserRouter([
   {
@@ -28,6 +33,27 @@ const appRouter = createBrowserRouter([
         path: "/",
         element: <HeroBanner />,
       },
+      {
+        path: "/women",
+        element: <Main />,
+      },
+      {
+        path: "/kids",
+        element: <Main />,
+      },
+      {
+        path: "/filter",
+        element: <Filter />,
+      },
+      {
+        path: "/updateprofile",
+        element: <UpdateProfile />,
+      },
+      {
+        path: "/searchresult/:search",
+        element: <SearchResult />,
+      },
+
       {
         path: "/main",
         element: <Main />,
@@ -47,6 +73,14 @@ const appRouter = createBrowserRouter([
       {
         path: "/buynow/:productId",
         element: <PrivateRoute component={<OrderNow />} />,
+      },
+      {
+        path: "/eachorder/:orderId",
+        element: <EachOrder />,
+      },
+      {
+        path: "/orderlist",
+        element: <PrivateRoute component={<OrderList />} />,
       },
       {
         path: "/login",

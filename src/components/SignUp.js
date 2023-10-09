@@ -67,30 +67,30 @@ const Signup = () => {
     <div className="content">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-full md:w-[350px]  bg-red-600 my-20 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80 flex flex-col "
+        className="w-[250px] md:w-[350px] bg-red-600 my-20 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80 p-7  sm:w-[250px]"
       >
-        <h1 className=" flex justify-center font-bold">Sign Up</h1>
+        <h1 className="font-bold text-3xl py-4 px-10 text-center">Sign Up</h1>
         <input
           type="text"
           placeholder="Username"
           ref={username}
-          className="m-5 p-5 text-black  "
+          className="mr-7 mt-5 p-3 text-black w-full"
         />
         <input
           type="email"
           placeholder="Email Address"
           ref={email}
-          className="m-5 p-5 text-black"
+          className="mr-7 mt-5 p-3 text-black w-full"
         />
         <input
           type="password"
           placeholder="Password"
           ref={password}
-          className="m-5 p-5 text-black"
+          className="mr-7 mt-5 p-3 text-black w-full"
         />
         <p className="text-black">{error}</p>
         <button
-          className="w-[100px] ml-32 lg:ml-32 md:ml-32 p-3 sm:ml-4 bg-white text-red-600 rounded-lg"
+          className="w-full mr-7 mt-5 p-3  bg-white text-red-600 rounded-lg"
           onClick={handleSignUp}
         >
           Sign up

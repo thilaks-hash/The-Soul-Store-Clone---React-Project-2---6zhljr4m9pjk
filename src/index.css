@@ -1,3 +1,10 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+/* Add this CSS to your stylesheet */
+.disabled-link {
+  pointer-events: none;
+  cursor: not-allowed;
+  color: gray; /* You can choose a suitable color */
+}

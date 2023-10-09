@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   FaBars,
+  FaFilter,
   FaHeart,
   FaSearch,
   FaShoppingCart,
@@ -8,14 +9,15 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Login from "./Login";
-import Signup from "./SignUp";
+
 import { useDispatch } from "react-redux";
 import { logout } from "../utilities/authSlice";
+import SearchResult from "./SearchResult";
 
 const DualNavbar = () => {
   const [activeCategory, setActiveCategory] = useState("men");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
   const handleTopNavCategoryClick = (category) => {
@@ -26,6 +28,9 @@ const DualNavbar = () => {
   };
   const closeSidebar = () => {
     setIsMenuOpen(false);
+  };
+  const handleSearch = () => {
+    <SearchResult search={search} />;
   };
 
   const renderBottomNavLinks = () => {
@@ -77,30 +82,36 @@ const DualNavbar = () => {
         {isMenuOpen && (
           <>
             <ul className="p-3 m-3 flex flex-wrap">
-              <li
-                className={`cursor-pointer p-4 ${
-                  activeCategory === "men" ? "font-bold  text-black" : ""
-                }`}
-                onClick={() => handleTopNavCategoryClick("men")}
-              >
-                Men
-              </li>
-              <li
-                className={`cursor-pointer p-4 ${
-                  activeCategory === "women" ? "font-bold text-black" : ""
-                }`}
-                onClick={() => handleTopNavCategoryClick("women")}
-              >
-                Women
-              </li>
-              <li
-                className={`cursor-pointer p-4 ${
-                  activeCategory === "kids" ? "font-bold text-black" : ""
-                }`}
-                onClick={() => handleTopNavCategoryClick("kids")}
-              >
-                Kids
-              </li>
+              <Link to="/main">
+                <li
+                  className={`cursor-pointer p-4 ${
+                    activeCategory === "men" ? "font-bold  text-black" : ""
+                  }`}
+                  onClick={() => handleTopNavCategoryClick("men")}
+                >
+                  Men
+                </li>
+              </Link>
+              <Link to="/women">
+                <li
+                  className={`cursor-pointer p-4 ${
+                    activeCategory === "women" ? "font-bold text-black" : ""
+                  }`}
+                  onClick={() => handleTopNavCategoryClick("women")}
+                >
+                  Women
+                </li>
+              </Link>
+              <Link to="/kids">
+                <li
+                  className={`cursor-pointer p-4 ${
+                    activeCategory === "kids" ? "font-bold text-black" : ""
+                  }`}
+                  onClick={() => handleTopNavCategoryClick("kids")}
+                >
+                  Kids
+                </li>
+              </Link>
             </ul>
             <div className="p-5 m-5">
               <ul className="flex-col">
@@ -117,6 +128,20 @@ const DualNavbar = () => {
                 <li className="cursor-pointer p-5">
                   <FaUser />
                 </li>
+                <Link to="/login">
+                  <li>login</li>
+                </Link>
+                <Link to="/signup">
+                  <li>signup</li>
+                </Link>
+                <button
+                  onClick={() => {
+                    dispatch(logout());
+                    console.log("log");
+                  }}
+                >
+                  Logout
+                </button>
               </ul>
             </div>
           </>
@@ -142,59 +167,31 @@ const DualNavbar = () => {
                 Men
               </li>
             </Link>
-            <li
-              className={`cursor-pointer ${
-                activeCategory === "women" ? "font-bold text-black" : ""
-              }`}
-              onClick={() => handleTopNavCategoryClick("women")}
-            >
-              Women
-            </li>
-            <li
-              className={`cursor-pointer ${
-                activeCategory === "kids" ? "font-bold text-black" : ""
-              }`}
-              onClick={() => handleTopNavCategoryClick("kids")}
-            >
-              Kids
-            </li>
+            <Link to="women">
+              <li
+                className={`cursor-pointer ${
+                  activeCategory === "women" ? "font-bold text-black" : ""
+                }`}
+                onClick={() => handleTopNavCategoryClick("women")}
+              >
+                Women
+              </li>
+            </Link>
+            <Link to="/kids">
+              <li
+                className={`cursor-pointer ${
+                  activeCategory === "kids" ? "font-bold text-black" : ""
+                }`}
+                onClick={() => handleTopNavCategoryClick("kids")}
+              >
+                Kids
+              </li>
+            </Link>
           </ul>
           <ul className="hidden space-x-4 px-14 font-normal sm:hidden md:hidden lg:flex">
-            <li className="hover">TRACK ORDER</li>
-            <li className="hover">CONTACT US</li>
-            <li className="hover">DOWNLOAD APP</li>
-          </ul>
-        </div>
-      </nav>
-      <div className="relative hidden sm:hidden md:hidden lg:block">
-        <img
-          src="https://www.thesouledstore.com/static/img/300x157-twitter.png"
-          alt="logo"
-          className="w-32 h-20 m-5 absolute top-1/2  transform -translate-x-0 -translate-y-16 z-10"
-        />
-      </div>
-      <nav className="shadow-md p-6 sm:p-6 md:p-6 lg:p-2 text-black ">
-        <div className=" flex justify-between container mx-auto m-2 ">
-          <ul className="hidden space-x-4 px-44 sm:hidden md:hidden lg:flex">
-            {renderBottomNavLinks()}
-          </ul>
-          <ul className="hidden space-x-4 px-14 sm:hidden md:hidden lg:flex">
-            <li className="cursor-pointer">
-              <FaSearch />
-            </li>
-            <Link to="/wishlist">
-              <li className="cursor-pointer">
-                <FaHeart />
-              </li>
+            <Link to="/orderlist">
+              <li className="hover">OrderList</li>
             </Link>
-            <Link to="/cart">
-              <li className="cursor-pointer">
-                <FaShoppingCart />
-              </li>
-            </Link>
-            <li className="cursor-pointer">
-              <FaUser />
-            </li>
             <Link to="/login">
               <li>login</li>
             </Link>
@@ -209,6 +206,60 @@ const DualNavbar = () => {
             >
               Logout
             </button>
+          </ul>
+        </div>
+      </nav>
+      <div className="relative hidden sm:hidden md:hidden lg:block">
+        <Link to="/">
+          <img
+            src="https://www.thesouledstore.com/static/img/300x157-twitter.png"
+            alt="logo"
+            className="w-32 h-20 m-5 absolute top-1/2  transform -translate-x-0 -translate-y-16 z-10"
+          />
+        </Link>
+      </div>
+      <nav className="shadow-md p-6 sm:p-6 md:p-6 lg:p-2 text-black ">
+        <div className=" flex justify-between container mx-auto m-2 ">
+          <ul className="hidden space-x-4 px-44 sm:hidden md:hidden lg:flex">
+            {renderBottomNavLinks()}
+          </ul>
+          <ul className="hidden space-x-4 px-14 sm:hidden md:hidden lg:flex">
+            <li className="cursor-pointer flex">
+              <input
+                type="text"
+                placeholder="Search here"
+                value={search}
+                className="p-1"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <Link
+                to={`/searchresult/${search}`}
+                className={search.trim() === "" ? "disabled-link" : ""}
+              >
+                <FaSearch className="m-1" />
+              </Link>
+            </li>
+            <Link to="/filter">
+              <li>
+                <FaFilter />
+              </li>
+            </Link>
+
+            <Link to="/wishlist">
+              <li className="cursor-pointer">
+                <FaHeart />
+              </li>
+            </Link>
+            <Link to="/cart">
+              <li className="cursor-pointer">
+                <FaShoppingCart />
+              </li>
+            </Link>
+            <Link to="/updateprofile">
+              <li className="cursor-pointer">
+                <FaUser />
+              </li>
+            </Link>
           </ul>
         </div>
       </nav>

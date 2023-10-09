@@ -10,11 +10,15 @@ import { login } from "../utilities/authSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const handleVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
   const handleLogin = async () => {
     const message = checkValidData(email, password);
     setErrorMessage(message);
@@ -59,28 +63,34 @@ const Login = () => {
     <div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-full md:w-[350px] bg-red-600 my-20 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80 p-7"
+        className="w-[250px] md:w-[350px] bg-red-600 my-20 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80 p-7  sm:w-[250px]"
       >
-        <h1 className="font-bold text-3xl py-4 px-10">signin</h1>
+        <h1 className="font-bold text-3xl py-4 px-10 text-center">signin</h1>
         <input
-          className="m-7 p-5 text-black"
+          className="mr-7 p-3 text-black w-full"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          className="m-7 p-5 text-black"
-          type="password"
+          className="mr-7 p-3 mt-5 text-black w-full "
+          type={passwordVisible ? "text" : "password"}
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <div
+          className=" text-slate-500 text-sm cursor-pointer"
+          onClick={handleVisibility}
+        >
+          show password
+        </div>
         <p>{errorMessage}</p>
 
         <button
           onClick={handleLogin}
-          className="w-full m-1 p-3  bg-white text-red-600 rounded-lg"
+          className="w-full mr-7 mt-5 p-3  bg-white text-red-600 rounded-lg"
         >
           Login
         </button>

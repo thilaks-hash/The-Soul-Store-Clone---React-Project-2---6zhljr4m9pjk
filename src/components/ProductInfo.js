@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ProductInfo_API, projectId } from "../utilities/constants";
 import Slider from "./Slider";
@@ -8,10 +8,12 @@ import OrderNow from "./OrderNow";
 const ProductInfo = () => {
   const { productId } = useParams();
   console.log(productId);
+  const navigate = useNavigate();
   const [productInfo, setProductInfo] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [quantity, setQuantity] = useState("1");
+  const [isInWishlist, setIsInWishList] = useState(false);
   const userToken = useSelector((state) => state.auth.user);
 
   const { name, images, fabric, price, description, tags, color, brand } =
@@ -40,38 +42,55 @@ const ProductInfo = () => {
   // ------------------wishlist---------------------
 
   const handleWishList = async (productId, userToken) => {
-    const wishListBody = {
-      productId: productId,
-    };
-    const data = await axios.patch(
-      "https://academics.newtonschool.co/api/v1/ecommerce/wishlist/",
-      wishListBody,
-      {
-        headers: {
-          projectId: "6zhljr4m9pjk",
-          Authorization: `Bearer ${userToken}`,
-        },
-      }
-    );
+    if (userToken) {
+      const wishListBody = {
+        productId: productId,
+      };
+      try {
+        const data = await axios.patch(
+          "https://academics.newtonschool.co/api/v1/ecommerce/wishlist/",
+          wishListBody,
+          {
+            headers: {
+              projectId: "6zhljr4m9pjk",
+              Authorization: `Bearer ${userToken}`,
+            },
+          }
+        );
 
-    console.log(data);
+        console.log(data);
+        if (data.status === 200) {
+          setIsInWishList(true);
+        } else if (response.status === 400) {
+          setError("already exit");
+        }
+      } catch (error) {
+        setError(error.message);
+      }
+    } else {
+      navigate("/login");
+    }
   };
   const requestBody = {
     quantity: quantity,
   };
   const handleCart = async (productId, userToken) => {
-    const data = await axios.patch(
-      `https://academics.newtonschool.co/api/v1/ecommerce/cart/${productId}`,
-      requestBody,
-      {
-        headers: {
-          projectId: "6zhljr4m9pjk",
-          Authorization: `Bearer ${userToken}`,
-        },
-      }
-    );
-    alert(data.data.message);
-    console.log(data);
+    if (userToken) {
+      const data = await axios.patch(
+        `https://academics.newtonschool.co/api/v1/ecommerce/cart/${productId}`,
+        requestBody,
+        {
+          headers: {
+            projectId: "6zhljr4m9pjk",
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      alert(data.data.message);
+      console.log(data);
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -90,7 +109,7 @@ const ProductInfo = () => {
         </div>
       ) : (
         <>
-          <div className="container mx-auto flex flex-wrap p-3">
+          <div className="container mx-auto flex flex-wrap justify-center p-3">
             <div className="w-full sm:w-1/2   px-20 pl-6 lg:p-20 sm:px-10">
               <Slider slides={images} />
             </div>
@@ -142,8 +161,9 @@ const ProductInfo = () => {
                 <button
                   className="border rounded-sm py-2 px-4 border-zinc-500"
                   onClick={() => handleWishList(productId, userToken)}
+                  disabled={isInWishlist}
                 >
-                  Wishlist
+                  {isInWishlist ? "Added to Wishlist" : "Wishlist"}
                 </button>
                 <button className="bg-red-600 text-white rounded-sm py-2 px-4 mr-2 ml-4">
                   <Link to={`/buynow/${productId}`}>Buy Now</Link>
