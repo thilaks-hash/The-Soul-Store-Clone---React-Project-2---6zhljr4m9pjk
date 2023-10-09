@@ -116,14 +116,16 @@ const DualNavbar = () => {
             <div className="p-5 m-5">
               <ul className="flex-col">
                 {renderBottomNavLinks()}
-                <li className="cursor-pointer flex p-3">
+
+                <li className="cursor-pointer flex  w-24 h-10">
                   <input
                     type="text"
                     placeholder="Search here"
                     value={search}
-                    className="p-1"
+                    className="p-1 w-20"
                     onChange={(e) => setSearch(e.target.value)}
                   />
+
                   <Link
                     to={`/searchresult/${search}`}
                     className={search.trim() === "" ? "disabled-link" : ""}
@@ -131,6 +133,11 @@ const DualNavbar = () => {
                     <FaSearch className="m-1" />
                   </Link>
                 </li>
+                <Link to="/filter">
+                  <li className="p-3">
+                    <FaFilter />
+                  </li>
+                </Link>
                 <Link to="/wishlist">
                   <li className="cursor-pointer p-3">
                     <FaHeart />
@@ -145,6 +152,9 @@ const DualNavbar = () => {
                   <li className="cursor-pointer p-3">
                     <FaUser />
                   </li>
+                </Link>
+                <Link to="/orderlist">
+                  <li className="hover p-3 font-bold">OrderList</li>
                 </Link>
                 <Link to="/login">
                   <li className="p-3">login</li>
