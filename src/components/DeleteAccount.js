@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { projectId } from "../utilities/constants";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
-const UpdateProfile = () => {
+const DeleteAccount = () => {
   const userToken = useSelector((state) => state.auth.user);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
@@ -33,7 +32,7 @@ const UpdateProfile = () => {
 
     // try {
     const response = await axios.patch(
-      "https://academics.newtonschool.co/api/v1/user/updateMyPassword",
+      "https://academics.newtonschool.co/api/v1/user/deleteMe",
       formData,
       {
         headers: {
@@ -53,13 +52,7 @@ const UpdateProfile = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
-      <Link to="/deleteaccount">
-        <button className=" bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none">
-          Delete Account
-        </button>
-      </Link>
-      <h2 className="text-2xl font-semibold mb-4">Update Password</h2>
-
+      <h2 className="text-2xl font-semibold mb-4">Delete Account</h2>
       <div onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">
@@ -125,7 +118,7 @@ const UpdateProfile = () => {
           type="submit"
           className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none"
         >
-          Update Password
+          Delete account
         </button>
       </div>
       {message && <p className="mt-4 text-green-500">{message}</p>}
@@ -133,4 +126,4 @@ const UpdateProfile = () => {
   );
 };
 
-export default UpdateProfile;
+export default DeleteAccount;

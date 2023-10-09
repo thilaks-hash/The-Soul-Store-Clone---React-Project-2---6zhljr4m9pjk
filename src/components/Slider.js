@@ -33,7 +33,7 @@ const Slider = ({ slides }) => {
   };
 
   return (
-    <div className="w-full md:max-w-[900px] lg:max-w-[1400px] pt-5 ml-10 sm:max-w-[500px] ">
+    <div className="w-full md:max-w-[900px] lg:max-w-[1400px] pt-5 ml-10 sm:max-w-[500px] slider">
       <div className="relative">
         <div
           style={{
@@ -41,7 +41,7 @@ const Slider = ({ slides }) => {
             backgroundSize: "cover",
             backgroundPosition: "center center",
           }}
-          className="h-[300px] md:h-[500px] lg:h-[500px] duration-500 "
+          className="h-[300px] md:h-[500px] lg:h-[500px] duration-500 sm:h-[200px] "
         ></div>
 
         <div className="absolute top-[50%] -translate-x-0 translate-y-[-50%] left-2 cursor-pointer px-10 text-white">

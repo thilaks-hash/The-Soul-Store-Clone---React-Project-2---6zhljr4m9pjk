@@ -8,3 +8,9 @@
   cursor: not-allowed;
   color: gray; /* You can choose a suitable color */
 }
+@media (max-width: 740px) {
+  .slider {
+    width: 90%; /* Adjust the width as needed for 740px screens */
+    margin: 0 auto; /* Center the slider horizontally on the screen */
+  }
+}
