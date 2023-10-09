@@ -1,0 +1,34 @@
+//navbar
+The DualNavbar component is a versatile navigation bar for web applications developed using React and styled with Tailwind CSS. It facilitates seamless user interaction, offering category-based navigation with dynamic rendering, a responsive design for various screen sizes, a search feature, user authentication (login, signup, logout), and quick access to cart and wishlist functions. Its standout feature is the sidebar, which can be toggled open or closed for an unobtrusive user experience. This component is particularly well-suited for e-commerce websites, ensuring efficient navigation and accessibility for shoppers across different devices.
+
+//orderlist
+
+The orderlist component is used to view the previous orders and also the processing status of the order
+
+//filter
+
+The filter component is used to filter the cloths according to the user preference , like if they need only the cloths according to the price range they can filter , and also they can filter by brand name, color etc...
+
+//search
+The search component is used to seach the cloths according to the name of the cloths
+
+//wishlist
+The wishlist component is used to save the product for later reference
+
+//cart
+The cart component is used to save the number of products user want to purchase and calculate the amount and also save the number of quantity they need in each items
+
+//productinfo
+In the productinfo component user can see the each product information like cloth type, cloth color, price, description and all the information they need in each product
+
+//ordernow
+
+The order now component is used to buy the product in this page user need to login or signup the website they only the user allow to buy a product from website. In this page user need to provide the details of their address, phone number etc...
+
+//Update profile
+
+In this update profile component user can change their password and also delete their account if they want
+
+//Main
+
+The main component is used to display all the products in the store if user click any product they naviagate to the product information page
