@@ -4,19 +4,16 @@ import { projectId } from "../utilities/constants";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const UpdateProfile = () => {
+const UpdatePassword = () => {
   const userToken = useSelector((state) => state.auth.user);
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
+  const [currentPasswordVisible, setCurrentPasswordVisible] = useState(false);
+  const [newPasswordVisible, setNewPasswordVisible] = useState(false);
 
   const [formData, setFormData] = useState({
-    name: "test6969",
-    email: "test6969@gmail.com",
-    passwordCurrent: "12345",
-    password: "1234567890",
+    name: "",
+    email: "",
+    passwordCurrent: "",
+    password: "",
   });
   const [message, setMessage] = useState("");
 
@@ -89,40 +86,42 @@ const UpdateProfile = () => {
           <label className="block text-sm font-medium text-gray-600">
             Current Password:
           </label>
-
           <input
-            type={passwordVisible ? "text" : "password"}
+            type={currentPasswordVisible ? "text" : "password"}
+            name="passwordCurrent"
             value={formData.passwordCurrent}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-400"
           />
           <button
-            onClick={togglePasswordVisibility}
+            onClick={() => setCurrentPasswordVisible(!currentPasswordVisible)}
             className="text-slate-500 text-sm"
           >
-            {passwordVisible ? "Hide" : "Show"} Password
+            {currentPasswordVisible ? "Hide" : "Show"} Password
           </button>
         </div>
+
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">
             New Password:
           </label>
           <input
-            type={passwordVisible ? "text" : "password"}
+            type={newPasswordVisible ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-400"
           />
           <button
-            onClick={togglePasswordVisibility}
+            onClick={() => setNewPasswordVisible(!newPasswordVisible)}
             className="text-slate-500 text-sm"
           >
-            {passwordVisible ? "Hide" : "Show"} Password
+            {newPasswordVisible ? "Hide" : "Show"} Password
           </button>
         </div>
         <button
           type="submit"
+          onClick={handleSubmit}
           className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none"
         >
           Update Password
@@ -133,4 +132,4 @@ const UpdateProfile = () => {
   );
 };
 
-export default UpdateProfile;
+export default UpdatePassword;

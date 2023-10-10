@@ -8,12 +8,12 @@ const BuyNowButton = () => {
   const { productId } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [addressInfo, setAddressInfo] = useState({
-    addressType: "HOME",
-    street: "123 Main St",
-    city: "Anytown",
-    state: "CA",
-    country: "USA",
-    zipCode: "12345",
+    addressType: "",
+    street: "",
+    city: "",
+    state: "",
+    country: "",
+    zipCode: "",
   });
   const [ordered, setOrdered] = useState(false);
   const [message, setMessage] = useState("");
@@ -88,20 +88,22 @@ const BuyNowButton = () => {
           </h3>
         </>
       ) : (
-        <div className="bg-gray-200 p-4 rounded-lg">
-          <label className="block mb-2">
+        <div className="bg-gray-200 p-4 rounded-lg m-14">
+          <label className="block mb-2 ml-96">
             Quantity:
             <input
               type="number"
+              placeholder="quantity"
               value={quantity}
               onChange={handleQuantityChange}
               min={1}
               className="border rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
             />
           </label>
-          <label className="block mb-2">
+          <label className="block mb-2 m-4 ml-96">
             Address Type:
             <input
+              placeholder="address"
               type="text"
               name="addressType"
               value={addressInfo.addressType}
@@ -109,51 +111,56 @@ const BuyNowButton = () => {
               className="border rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
             />
           </label>
-          <label className="block mb-2">
+          <label className="block mb-2 ml-96">
             Street:
             <input
               type="text"
               name="street"
+              placeholder="street"
               value={addressInfo.street}
               onChange={handleAddressChange}
               className="border rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
             />
           </label>
-          <label className="block mb-2">
+          <label className="block mb-2 ml-96">
             City:
             <input
               type="text"
               name="city"
+              placeholder="city"
               value={addressInfo.city}
               onChange={handleAddressChange}
               className="border rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
             />
           </label>
-          <label className="block mb-2">
+          <label className="block mb-2 ml-96">
             State:
             <input
               type="text"
               name="state"
+              placeholder="state"
               value={addressInfo.state}
               onChange={handleAddressChange}
               className="border rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
             />
           </label>
-          <label className="block mb-2">
+          <label className="block mb-2 ml-96">
             Country:
             <input
               type="text"
               name="country"
+              placeholder="country"
               value={addressInfo.country}
               onChange={handleAddressChange}
               className="border rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
             />
           </label>
-          <label className="block mb-2">
+          <label className="block mb-2 ml-96">
             Zip Code:
             <input
               type="text"
               name="zipCode"
+              placeholder="zipcode"
               value={addressInfo.zipCode}
               onChange={handleAddressChange}
               className="border rounded-md px-2 py-1 focus:outline-none focus:border-blue-500"
@@ -161,7 +168,7 @@ const BuyNowButton = () => {
           </label>
           <button
             onClick={handleBuyNow}
-            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-400 focus:outline-none"
+            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-400 focus:outline-none ml-96"
           >
             Buy Now
           </button>

@@ -10,7 +10,6 @@ import {
   Route,
 } from "react-router-dom";
 import DeleteAccount from "./components/DeleteAccount";
-import UpdateProfile from "./components/UpdateProfile";
 import Main from "./components/Main";
 import ProductInfo from "./components/ProductInfo";
 import Cart from "./components/Cart";
@@ -24,6 +23,7 @@ import OrderList from "./components/OrderList";
 import EachOrder from "./components/EachOrder";
 import SearchResult from "./components/SearchResult";
 import Filter from "./components/Filter";
+import UpdatePassword from "./components/UpdatePassword";
 
 const appRouter = createBrowserRouter([
   {
@@ -48,7 +48,7 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/updateprofile",
-        element: <PrivateRoute component={<UpdateProfile />} />,
+        element: <PrivateRoute component={<UpdatePassword />} />,
       },
       {
         path: "/searchresult/:search",
