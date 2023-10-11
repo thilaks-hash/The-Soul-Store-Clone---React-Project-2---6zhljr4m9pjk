@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import axios from "axios";
 import { projectId } from "../utilities/constants";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const DeleteAccount = () => {
   const userToken = useSelector((state) => state.auth.user);
-  const [passwordVisible, setPasswordVisible] = useState(false);
-
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
+  const [currentPasswordVisible, setCurrentPasswordVisible] = useState(false);
+  const [newPasswordVisible, setNewPasswordVisible] = useState(false);
 
   const [formData, setFormData] = useState({
-    name: "test6969",
-    email: "test6969@gmail.com",
-    passwordCurrent: "12345",
-    password: "1234567890",
+    name: "",
+    email: "",
+    passwordCurrent: "",
+    password: "",
   });
   const [message, setMessage] = useState("");
 
@@ -31,12 +29,12 @@ const DeleteAccount = () => {
     e.preventDefault();
 
     // try {
-    const response = await axios.patch(
+    const response = await axios.delete(
       "https://academics.newtonschool.co/api/v1/user/deleteMe",
       formData,
       {
         headers: {
-          projectId: projectId,
+          projectId: "6zhljr4m9pjk",
           Authorization: `Bearer ${userToken}`,
         },
       }
@@ -52,7 +50,8 @@ const DeleteAccount = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
-      <h2 className="text-2xl font-semibold mb-4">Delete Account</h2>
+      <h2 className="text-2xl font-semibold mb-4">Update Password</h2>
+
       <div onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">
@@ -82,43 +81,45 @@ const DeleteAccount = () => {
           <label className="block text-sm font-medium text-gray-600">
             Current Password:
           </label>
-
           <input
-            type={passwordVisible ? "text" : "password"}
+            type={currentPasswordVisible ? "text" : "password"}
+            name="passwordCurrent"
             value={formData.passwordCurrent}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-400"
           />
           <button
-            onClick={togglePasswordVisibility}
+            onClick={() => setCurrentPasswordVisible(!currentPasswordVisible)}
             className="text-slate-500 text-sm"
           >
-            {passwordVisible ? "Hide" : "Show"} Password
+            {currentPasswordVisible ? "Hide" : "Show"} Password
           </button>
         </div>
+
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-600">
             New Password:
           </label>
           <input
-            type={passwordVisible ? "text" : "password"}
+            type={newPasswordVisible ? "text" : "password"}
             name="password"
             value={formData.password}
             onChange={handleChange}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-red-400"
           />
           <button
-            onClick={togglePasswordVisibility}
+            onClick={() => setNewPasswordVisible(!newPasswordVisible)}
             className="text-slate-500 text-sm"
           >
-            {passwordVisible ? "Hide" : "Show"} Password
+            {newPasswordVisible ? "Hide" : "Show"} Password
           </button>
         </div>
         <button
           type="submit"
+          onClick={handleSubmit}
           className="w-full bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none"
         >
-          Delete account
+          DeleteAccount
         </button>
       </div>
       {message && <p className="mt-4 text-green-500">{message}</p>}
