@@ -120,12 +120,6 @@ const ProductInfo = () => {
               <h2 className="text-2xl font-semibold p-3">Brand:{brand}</h2>
               <div className="my-4 p-3">
                 <span className="text-lg font-bold ">Product Details:</span>{" "}
-                {tags.map((tag) => (
-                  <div key={tag._id} className="p-2">
-                    {tag.label}
-                    <div>Type:{tag.type}</div>
-                  </div>
-                ))}
               </div>
               <div className="p-3 font-bold">
                 COLOR:

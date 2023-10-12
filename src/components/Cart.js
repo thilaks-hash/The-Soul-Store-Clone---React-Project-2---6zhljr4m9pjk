@@ -92,14 +92,14 @@ function Cart() {
                 {cartItems.items.map((item, index) => (
                   <div className="flex p-3 justify-evenly flex-wrap">
                     <div className="flex flex-col">
-                      <Link to={"/productinfo/" + item.product._id} key={index}>
-                        <div className="flex justify-center">
+                      <Link to={"/productinfo/" + item._id} key={index}>
+                        {/* <div className="flex justify-center">
                           <img
                             src={item.product.displayImage}
                             alt="pic"
                             className="h-50 w-64 shadow-zinc-500 shadow-md"
                           />
-                        </div>
+                        </div> */}
                       </Link>
                       <h2 className="text-center font-serif">
                         Quantity: <span>{item.quantity}</span>

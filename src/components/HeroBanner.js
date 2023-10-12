@@ -9,12 +9,13 @@ import Slider from "./Slider";
 const HeroBanner = () => {
   const { data, loading, error } = FetchApi();
   console.log(data);
+  console.log("Top Rated" === "TOP RATED");
 
   const categoryFilters = [
-    { tag: "Top Rated", title: "TOP RATED" },
+    { tag: "TOP RATED", title: "TOP RATED" },
     { tag: "New Arrival", title: "NEW ARRIVAL" },
     { tag: "Featured", title: "FEATURED" },
-    { tag: "Best Seller", title: "BEST SELLER" },
+    { tag: "best Seller", title: "BEST SELLER" },
   ];
   const slides = [
     "https://images.bewakoof.com/t1080/men-get-schwifty-oversized-graphic-printed-t-shirt-605045-1693306313-1.jpg",
@@ -50,11 +51,13 @@ const HeroBanner = () => {
             <ProductCategory
               key={index}
               products={data.filter(
-                (product) => product.sellerTag === filter.tag
+                (data) =>
+                  data.sellerTag.toLowerCase() === filter.tag.toLowerCase()
               )}
               title={filter.title}
             />
           ))}
+          console.log(data);
         </div>
       )}
       <h2 className="bg-red-600 text-white p-3 text-3xl text-center">
