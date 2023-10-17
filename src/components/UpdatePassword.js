@@ -50,11 +50,11 @@ const UpdatePassword = () => {
 
   return (
     <div className="max-w-md mx-auto p-4 bg-white shadow-lg rounded-lg">
-      <Link to="/deleteaccount">
+      {/* <Link to="/deleteaccount">
         <button className=" bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 focus:outline-none">
           Delete Account
         </button>
-      </Link>
+      </Link> */}
       <h2 className="text-2xl font-semibold mb-4">Update Password</h2>
 
       <div onSubmit={handleSubmit}>

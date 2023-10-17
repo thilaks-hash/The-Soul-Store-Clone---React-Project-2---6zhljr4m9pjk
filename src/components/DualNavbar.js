@@ -33,36 +33,36 @@ const DualNavbar = () => {
     <SearchResult search={search} />;
   };
 
-  const renderBottomNavLinks = () => {
-    switch (activeCategory) {
-      case "men":
-        return (
-          <>
-            <li>Topwear</li>
-            <li>Shirts</li>
-            <li>Jeans</li>
-          </>
-        );
-      case "women":
-        return (
-          <>
-            <li>Kurta</li>
-            <li>Leggings</li>
-            <li>Dresses</li>
-          </>
-        );
-      case "kids":
-        return (
-          <>
-            <li>T-shirts</li>
-            <li>Shorts</li>
-            <li>Skirts</li>
-          </>
-        );
-      default:
-        return null;
-    }
-  };
+  // const renderBottomNavLinks = () => {
+  //   switch (activeCategory) {
+  //     case "men":
+  //       return (
+  //         <>
+  //           <li>Topwear</li>
+  //           <li>Shirts</li>
+  //           <li>Jeans</li>
+  //         </>
+  //       );
+  //     case "women":
+  //       return (
+  //         <>
+  //           <li>Kurta</li>
+  //           <li>Leggings</li>
+  //           <li>Dresses</li>
+  //         </>
+  //       );
+  //     case "kids":
+  //       return (
+  //         <>
+  //           <li>T-shirts</li>
+  //           <li>Shorts</li>
+  //           <li>Skirts</li>
+  //         </>
+  //       );
+  //     default:
+  //       return null;
+  //   }
+  // };
 
   return (
     <div className="">
@@ -115,7 +115,7 @@ const DualNavbar = () => {
             </ul>
             <div className="p-5 m-5">
               <ul className="flex-col">
-                {renderBottomNavLinks()}
+                {/* {renderBottomNavLinks()} */}
 
                 <li className="cursor-pointer flex  w-24 h-10">
                   <input
@@ -250,7 +250,7 @@ const DualNavbar = () => {
       <nav className="shadow-md p-6 sm:p-6 md:p-6 lg:p-2 text-black ">
         <div className=" flex justify-between container mx-auto m-2 ">
           <ul className="hidden space-x-4 px-44 sm:hidden md:hidden lg:flex">
-            {renderBottomNavLinks()}
+            {/* {renderBottomNavLinks()} */}
           </ul>
           <ul className="hidden space-x-4 px-14 sm:hidden md:hidden lg:flex">
             <li className="cursor-pointer flex">
