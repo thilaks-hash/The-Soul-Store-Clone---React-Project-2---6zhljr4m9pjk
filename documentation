@@ -1,3 +1,6 @@
+hosted link:
+https://thilaks-soulstore.netlify.app/
+
 //navbar
 The DualNavbar component is a versatile navigation bar for web applications developed using React and styled with Tailwind CSS. It facilitates seamless user interaction, offering category-based navigation with dynamic rendering, a responsive design for various screen sizes, a search feature, user authentication (login, signup, logout), and quick access to cart and wishlist functions. Its standout feature is the sidebar, which can be toggled open or closed for an unobtrusive user experience. This component is particularly well-suited for e-commerce websites, ensuring efficient navigation and accessibility for shoppers across different devices.
 
