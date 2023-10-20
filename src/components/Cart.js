@@ -14,6 +14,23 @@ function Cart() {
   const [loading, setLoading] = useState(true);
   const userToken = useSelector((state) => state.auth.user);
 
+  const handleDeleteAll = async () => {
+    try {
+      const apiUrl = "https://academics.newtonschool.co/api/v1/ecommerce/cart";
+      await axios.delete(apiUrl, {
+        headers: {
+          projectID: projectId,
+          Authorization: `Bearer ${userToken}`,
+        },
+      });
+
+      // After successful deletion, you can clear the cart in your state.
+      setCartItems({ items: [] });
+    } catch (error) {
+      console.error("Error deleting all items from the cart:", error);
+    }
+  };
+
   useEffect(() => {
     const apiUrl = "https://academics.newtonschool.co/api/v1/ecommerce/cart";
     setRemove(true);
@@ -88,6 +105,12 @@ function Cart() {
             </>
           ) : (
             <div>
+              <button
+                onClick={handleDeleteAll}
+                className="rounded-md bg-red-600 text-white p-3 m-5"
+              >
+                DeleteAll
+              </button>
               <ul>
                 {cartItems.items.map((item, index) => (
                   <div className="flex p-3 justify-evenly flex-wrap">

@@ -13,7 +13,6 @@ function App() {
       <Provider store={store}>
         <DualNavbar />
         <Outlet />
-
         <Footer />
       </Provider>
     </div>

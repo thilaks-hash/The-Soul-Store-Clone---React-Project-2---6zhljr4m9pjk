@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../utilities/authSlice";
 import SearchResult from "./SearchResult";
 
@@ -19,6 +19,7 @@ const DualNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const userToken = useSelector((state) => state.auth.user);
 
   const handleTopNavCategoryClick = (category) => {
     setActiveCategory(category);
@@ -156,21 +157,26 @@ const DualNavbar = () => {
                 <Link to="/orderlist">
                   <li className="hover p-3 font-bold">OrderList</li>
                 </Link>
-                <Link to="/login">
-                  <li className="p-3">login</li>
-                </Link>
-                <Link to="/signup">
-                  <li className="p-3">signup</li>
-                </Link>
-                <button
-                  onClick={() => {
-                    dispatch(logout());
-                    console.log("log");
-                  }}
-                  className="p-3"
-                >
-                  Logout
-                </button>
+                {userToken === null ? (
+                  <>
+                    <Link to="/login">
+                      <li className="p-3">login</li>
+                    </Link>
+                    <Link to="/signup">
+                      <li className="p-3">signup</li>
+                    </Link>
+                  </>
+                ) : (
+                  <button
+                    onClick={() => {
+                      dispatch(logout());
+                      console.log("log");
+                    }}
+                    className="p-3"
+                  >
+                    Logout
+                  </button>
+                )}
               </ul>
             </div>
           </>
@@ -221,20 +227,25 @@ const DualNavbar = () => {
             <Link to="/orderlist">
               <li className="hover">OrderList</li>
             </Link>
-            <Link to="/login">
-              <li>login</li>
-            </Link>
-            <Link to="/signup">
-              <li>signup</li>
-            </Link>
-            <button
-              onClick={() => {
-                dispatch(logout());
-                console.log("log");
-              }}
-            >
-              Logout
-            </button>
+            {!userToken ? (
+              <>
+                <Link to="/login">
+                  <li>login</li>
+                </Link>
+                <Link to="/signup">
+                  <li>signup</li>
+                </Link>
+              </>
+            ) : (
+              <button
+                onClick={() => {
+                  dispatch(logout());
+                  console.log("log");
+                }}
+              >
+                Logout
+              </button>
+            )}
           </ul>
         </div>
       </nav>
