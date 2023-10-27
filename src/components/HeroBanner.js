@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import Slider from "./Slider";
 const HeroBanner = () => {
   const { data, loading, error } = FetchApi();
-  console.log(data);
   console.log("Top Rated" === "TOP RATED");
 
   const categoryFilters = [
