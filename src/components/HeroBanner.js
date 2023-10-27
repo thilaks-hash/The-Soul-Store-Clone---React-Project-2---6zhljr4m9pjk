@@ -56,7 +56,7 @@ const HeroBanner = () => {
               title={filter.title}
             />
           ))}
-          console.log(data);
+        
         </div>
       )}
       <h2 className="bg-red-600 text-white p-3 text-3xl text-center">
